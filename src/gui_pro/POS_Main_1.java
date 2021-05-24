@@ -17,6 +17,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
+import javax.swing.JMenuItem;
+import javax.swing.JMenuBar;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 class POS_Main_1 extends JFrame implements ActionListener{
 
@@ -41,26 +50,61 @@ class POS_Main_1 extends JFrame implements ActionListener{
 	public String price="";
 
 	public int total=0;
-	private JTextField txtUsername;
 
 	/**
 	 * Launch the application.
+	 * @param userName 
 	 */
 
-	public POS_Main_1() {
+	public POS_Main_1(String userName) {
+		setForeground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(500,250, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setForeground(Color.WHITE);
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 
 		
-		JButton btn3 = new JButton("\uCE74\uB77C\uBA5C\uB9C8\uB07C\uC544\uB610");
-		btn3.setBounds(329, 145, 127, 95);
+
+		
+		JButton btn1=new JButton("");
+		btn1.setForeground(Color.BLACK);
+		btn1.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uC544\uBA54\uB9AC\uCE74\uB1781.png")));
+		btn1.setBounds(55, 159, 127, 95);
+		btn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource()==btn1) {
+					str+="아메리카노"+"\n";
+					price+="2000"+"\n";
+					total+=2000;
+				}
+			}
+		});
+		contentPane.add(btn1);
+		
+		JButton btn2 = new JButton("");
+		btn2.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uCE74\uD398\uB77C\uB5BC.png")));
+		btn2.setBounds(202, 159, 127, 95);
+		btn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource()==btn2) {
+					str+="카페라떼"+"\n";
+					price+="2500"+"\n";
+					total+=2500;
+				}
+			}
+		});
+		contentPane.add(btn2);
+		
+		JButton btn3 = new JButton("");
+		btn3.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uCE74\uB77C\uBA5C\uB9C8\uB07C\uC544\uB610.png")));
+		btn3.setBounds(350, 159, 127, 95);
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btn3) {
-					str+=btn3.getText()+"\n";
+					str+="카라멜 마끼아또"+"\n";
 					price+="2500"+"\n";
 					total+=2500;
 				}
@@ -69,38 +113,13 @@ class POS_Main_1 extends JFrame implements ActionListener{
 		contentPane.setLayout(null);
 		contentPane.add(btn3);
 		
-		JButton btn1=new JButton("\uC544\uBA54\uB9AC\uCE74\uB178");
-		btn1.setBounds(34, 145, 127, 95);
-		btn1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource()==btn1) {
-					str+=btn1.getText()+"\n";
-					price+="2000"+"\n";
-					total+=2000;
-				}
-			}
-		});
-		contentPane.add(btn1);
-		
-		JButton btn2 = new JButton("\uCE74\uD398\uB77C\uB5BC");
-		btn2.setBounds(181, 145, 127, 95);
-		btn2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource()==btn2) {
-					str+=btn2.getText()+"\n";
-					price+="2500"+"\n";
-					total+=2500;
-				}
-			}
-		});
-		contentPane.add(btn2);
-		
-		JButton btn4 = new JButton("\uCE74\uD398\uBAA8\uCE74");
-		btn4.setBounds(478, 145, 127, 95);
+		JButton btn4 = new JButton("");
+		btn4.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uCE74\uD398\uBAA8\uCE74.png")));
+		btn4.setBounds(499, 159, 127, 95);
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btn4) {
-					str+=btn4.getText()+"\n";
+					str+="카페모카"+"\n";
 					price+="2500"+"\n";
 					total+=2500;
 				}
@@ -108,25 +127,27 @@ class POS_Main_1 extends JFrame implements ActionListener{
 		});
 		contentPane.add(btn4);
 		
-		JButton btn5 = new JButton("\uC544\uC774\uC2A4\uD2F0");
-		btn5.setBounds(34, 276, 127, 95);
+		JButton btn5 = new JButton("");
+		btn5.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uB179\uCC28.png")));
+		btn5.setBounds(55, 290, 127, 95);
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btn5) {
-					str+=btn5.getText()+"\n";
-					price+="2000"+"\n";
-					total+=2000;
+					str+="녹차"+"\n";
+					price+="1500"+"\n";
+					total+=1500;
 				}
 			}
 		});
 		contentPane.add(btn5);
 		
-		JButton btn6 = new JButton("\uC720\uC790\uCC28");
-		btn6.setBounds(181, 276, 127, 95);
+		JButton btn6 = new JButton("");
+		btn6.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uC720\uC790\uCC28.png")));
+		btn6.setBounds(202, 290, 127, 95);
 		btn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btn6) {
-					str+=btn6.getText()+"\n";
+					str+="유자차"+"\n";
 					price+="1500"+"\n";
 					total+=1500;
 				}
@@ -134,12 +155,13 @@ class POS_Main_1 extends JFrame implements ActionListener{
 		});
 		contentPane.add(btn6);
 		
-		JButton btn7 = new JButton("\uD56B\uCD08\uCF54");
-		btn7.setBounds(329, 276, 127, 95);
+		JButton btn7 = new JButton("");
+		btn7.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uD56B\uCD08\uCF54.png")));
+		btn7.setBounds(350, 290, 127, 95);
 		btn7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btn7) {
-					str+=btn7.getText()+"\n";
+					str+="핫초코"+"\n";
 					price+="1500"+"\n";
 					total+=1500;
 				}
@@ -147,88 +169,131 @@ class POS_Main_1 extends JFrame implements ActionListener{
 		});
 		contentPane.add(btn7);
 		
-		JButton btn8 = new JButton("\uC790\uBABD\uC5D0\uC774\uB4DC");
-		btn8.setBounds(478, 276, 127, 95);
+		JButton btn8 = new JButton("");
+		btn8.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uD5C8\uBE0C\uCC28.png")));
+		btn8.setBounds(499, 290, 127, 95);
 		btn8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btn8) {
-					str+=btn8.getText()+"\n";
-					price+="3000"+"\n";
-					total+=3000;
+					str+="허브 차"+"\n";
+					price+="1500"+"\n";
+					total+=1500;
 				}
 			}
 		});
 		contentPane.add(btn8);
 		
-		JButton btn9 = new JButton("\uC640\uD50C");
-		btn9.setBounds(34, 404, 127, 95);
+		JButton btn9 = new JButton("");
+		btn9.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uB3C4\uB11B.png")));
+		btn9.setBounds(55, 418, 127, 95);
 		btn9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btn9) {
-					str+=btn9.getText()+"\n";
-					price+="2500"+"\n";
-					total+=2500;
+					str+="도넛"+"\n";
+					price+="1500"+"\n";
+					total+=1500;
 				}
 			}
 		});
 		contentPane.add(btn9);
 		
-		JButton btn10 = new JButton("\uCFE0\uD0A4");
-		btn10.setBounds(181, 404, 127, 95);
+		JButton btn10 = new JButton("");
+		btn10.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uCFE0\uD0A4.png")));
+		btn10.setBounds(202, 418, 127, 95);
 		btn10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btn10) {
-					str+=btn10.getText()+"\n";
-					price+="2000"+"\n";
-					total+=2000;
+					str+="쿠키"+"\n";
+					price+="1000"+"\n";
+					total+=1000;
 				}
 			}
 		});
 		contentPane.add(btn10);
 		
-		JButton btn11 = new JButton("\uCF00\uC774\uD06C");
-		btn11.setBounds(329, 404, 127, 95);
+		JButton btn11 = new JButton("");
+		btn11.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uCF00\uC774\uD06C.png")));
+		btn11.setBounds(350, 418, 127, 95);
 		btn11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btn11) {
-					str+=btn11.getText()+"\n";
-					price+="4500"+"\n";
-					total+=4500;
+					str+="케이크"+"\n";
+					price+="2500"+"\n";
+					total+=2500;
 				}
 			}
 		});
 		contentPane.add(btn11);
 		
-		JButton btn12 = new JButton("\uC2A4\uCF58");
-		btn12.setBounds(478, 404, 127, 95);
+		JButton btn12 = new JButton("");
+		btn12.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uBA38\uD540.png")));
+		btn12.setBounds(499, 418, 127, 95);
 		btn12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btn11) {
-					str+=btn12.getText()+"\n";
-					price+="3500"+"\n";
-					total+=3500;
+					str+="머핀"+"\n";
+					price+="2500"+"\n";
+					total+=2500;
 				}
 			}
 		});
 		contentPane.add(btn12);
 		
 		JLabel lblNewLabel = new JLabel("MENU");
-		lblNewLabel.setBounds(34, 59, 265, 58);
-		lblNewLabel.setFont(new Font("나눔바른고딕 옛한글", Font.PLAIN, 58));
+		lblNewLabel.setBounds(35, 43, 179, 58);
+		lblNewLabel.setFont(new Font("HGPGothicE", Font.BOLD, 58));
 		contentPane.add(lblNewLabel);
 		
-		JButton btnuser = new JButton("user");
-		btnuser.setBounds(694, 145, 97, 95);
-		contentPane.add(btnuser);
+		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.inactiveCaptionBorder);
+		panel.setBounds(33, 130, 619, 403);
+		contentPane.add(panel);
 		
-		txtUsername = new JTextField();
-		txtUsername.setBounds(803, 157, 116, 21);
-		txtUsername.setText("username");
-		contentPane.add(txtUsername);
-		txtUsername.setColumns(10);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
+		panel_1.setBounds(664, 130, 275, 403);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
 		
-		JButton btnmenulist_pop = new JButton("\uC8FC\uBB38 \uBAA9\uB85D \uD655\uC778");
-		btnmenulist_pop.setBounds(694, 278, 223, 58);
+		JButton btnuser = new JButton("");
+		btnuser.setBounds(90, 34, 103, 85);
+		panel_1.add(btnuser);
+		btnuser.setBorderPainted(false);
+		btnuser.setBackground(SystemColor.control);
+		btnuser.setBorder(new EmptyBorder(5, 5, 5, 5));
+		btnuser.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/iconmonstr-user-5-64.png")));
+		
+		JButton btnpayment_go_1 = new JButton("");
+		btnpayment_go_1.setBounds(49, 305, 188, 44);
+		panel_1.add(btnpayment_go_1);
+		btnpayment_go_1.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uACB0\uC81C.png")));
+		btnpayment_go_1.setBackground(SystemColor.text);
+		
+		JButton btndelete = new JButton("");
+		btndelete.setBounds(49, 251, 188, 44);
+		panel_1.add(btndelete);
+		btndelete.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uC8FC\uBB38 \uCDE8\uC18C.png")));
+		btndelete.setBackground(SystemColor.text);
+		
+		JButton btnmenulist_pop = new JButton("");
+		btnmenulist_pop.setBounds(49, 197, 188, 44);
+		panel_1.add(btnmenulist_pop);
+		btnmenulist_pop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnmenulist_pop.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/\uC8FC\uBB38 \uBAA9\uB85D \uD655\uC778.png")));
+		btnmenulist_pop.setBackground(SystemColor.text);
+		
+		JLabel lblUsername = new JLabel("");
+		lblUsername.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsername.setBounds(100, 129, 80, 15);
+		panel_1.add(lblUsername);
+		lblUsername.setText(userName);
+		
+
+		
 		btnmenulist_pop.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -238,44 +303,50 @@ class POS_Main_1 extends JFrame implements ActionListener{
 				}
 			}
 		});
-		contentPane.add(btnmenulist_pop);
-		
-		JButton btndelete = new JButton("\uC8FC\uBB38 \uCDE8\uC18C");
 		btndelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btndelete) {
-					JOptionPane.showConfirmDialog(btndelete,"취소했습니다.");
-					str="";
-					price="";
-					total=0;
+					int result=JOptionPane.showConfirmDialog(btnmenulist_pop,"주문을 취소하시겠습니까?","Confirm",JOptionPane.YES_NO_OPTION);
+					if(result==JOptionPane.YES_OPTION) {  //사용자가 "예"라고 클릭한 경우 입력된 변수 초기화
+						str="";
+						price="";
+						total=0;
+					}
 				}	
 			}
 		});
-		btndelete.setBounds(694, 363, 223, 58);
-		contentPane.add(btndelete);
-		
-		JButton btnpayment_go = new JButton("\uACB0\uC81C");
-		btnpayment_go.addMouseListener(new MouseAdapter() {
+		btnpayment_go_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(e.getSource()==btnpayment_go) {
+				if(e.getSource()==btnpayment_go_1) {
 					new Payment(str,price,total).setVisible(true);
 
 				}
 			}
 		});
-		btnpayment_go.setBounds(694, 441, 223, 58);
-		contentPane.add(btnpayment_go);
+		btnuser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(e.getSource()==btnuser) {
+					JOptionPane.showConfirmDialog(btnuser,"userName:"+userName+"\n"+"직급:"+"관리자","Message",JOptionPane.OK_OPTION);
+					
+				}
+			}
+		});
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon(POS_Main_1.class.getResource("/images/LOGO.png")));
+		lblNewLabel_1.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		lblNewLabel_1.setBounds(762, 21, 194, 27);
+		contentPane.add(lblNewLabel_1);
 		
 	
 		setTitle("카페 POS 시스템 - 2조");
-		setSize(983,599);
+		setSize(997,611);
 		setVisible(true);		
 	
 	}
 
 	public static void main(String[] args) {
-		new POS_Main_1();
 	}
 
 	@Override
@@ -283,5 +354,4 @@ class POS_Main_1 extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.SystemColor;
 
-public class LogIn extends JFrame {
+public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -32,7 +32,7 @@ public class LogIn extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LogIn frame = new LogIn();
+					Login frame = new Login();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,16 +44,16 @@ public class LogIn extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LogIn() {
+	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(800,350, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("LOG-IN");
+		btnNewButton.setBounds(85, 186, 269, 45);
 		btnNewButton.setFont(new Font("굴림", Font.BOLD, 12));
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBackground(new Color(0, 0, 128));
@@ -64,29 +64,35 @@ public class LogIn extends JFrame {
 				String  userPw = passwordField.getText();
 				
 				if(userName.equals("name")&& userPw.equals("123456")) {
-					JOptionPane.showMessageDialog(null,"Weclome"+"\n"+"user:  "+userName);}
+					JOptionPane.showMessageDialog(null,"Weclome"+"\n"+"user:  "+userName);
+					dispose();
+					setVisible(false);
+					new POS_Main_1(userName).setVisible(true);}
 				else {JOptionPane.showMessageDialog(null, "아이디, 비밀번호가 일치하지 않습니다.\r\n" + 
 						"다시 시도해주세요.");}
 				/*메인창 이동 작성 */
-				
-				new POS_Main_1().setVisible(true);
 					
 				
 			}
 		});
-		btnNewButton.setBounds(85, 186, 269, 45);
+		contentPane.setLayout(null);
 		contentPane.add(btnNewButton);
 		
 		textField = new JTextField(	textField.CENTER);
-		textField.setBackground(SystemColor.inactiveCaptionBorder);
 		textField.setBounds(67, 71, 304, 42);
+		textField.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBackground(SystemColor.inactiveCaptionBorder);
 		passwordField.setBounds(67, 123, 304, 40);
+		passwordField.setBackground(SystemColor.inactiveCaptionBorder);
 		contentPane.add(passwordField);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/images/LOGO.png")));
+		lblNewLabel.setBounds(93, -22, 230, 113);
+		contentPane.add(lblNewLabel);
 	}
 }
 

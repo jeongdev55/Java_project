@@ -30,6 +30,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
+import java.awt.SystemColor;
+import javax.swing.ImageIcon;
 
 public class menulist_pop extends JFrame {
 
@@ -59,19 +61,21 @@ public class menulist_pop extends JFrame {
 	//String str,String price,int total
 	public menulist_pop(String str,String price,int total) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 622);
+		setBounds(900,280, 437, 541);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.text);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\uC8FC\uBB38 \uBAA9\uB85D");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("³ª´®¹Ù¸¥°íµñ ¿¾ÇÑ±Û", Font.PLAIN, 36));
-		lblNewLabel.setBounds(129, 30, 174, 44);
+		lblNewLabel.setFont(new Font("µ¸¿ò", Font.BOLD, 36));
+		lblNewLabel.setBounds(129, 39, 174, 44);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnok = new JButton("\uD655\uC778");
+		JButton btnok = new JButton("");
+		btnok.setIcon(new ImageIcon(menulist_pop.class.getResource("/images/\uD655\uC778.png")));
 		btnok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btnok) {
@@ -79,28 +83,28 @@ public class menulist_pop extends JFrame {
 				}
 			}
 		});
-		btnok.setBounds(162, 508, 106, 51);
+		btnok.setBounds(118, 427, 188, 44);
 		contentPane.add(btnok);
 		
 		JLabel lbltotal = new JLabel("");
-		lbltotal.setFont(new Font("±¼¸²", Font.BOLD, 55));
-		lbltotal.setBounds(175, 433, 191, 61);
+		lbltotal.setFont(new Font("µ¸¿ò", Font.BOLD, 45));
+		lbltotal.setBounds(101, 373, 191, 44);
 		contentPane.add(lbltotal);
 		String total1=String.valueOf(total);
 		lbltotal.setText(total1);
 		
 		JLabel lblNewLabel_1 = new JLabel("\uD569\uACC4 \uAE08\uC561");
-		lblNewLabel_1.setFont(new Font("µ¸¿ò", Font.BOLD, 21));
-		lblNewLabel_1.setBounds(72, 403, 106, 30);
+		lblNewLabel_1.setFont(new Font("µ¸¿ò", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(83, 333, 106, 30);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("\uC6D0");
-		lblNewLabel_1_1.setFont(new Font("±¼¸²", Font.PLAIN, 52));
-		lblNewLabel_1_1.setBounds(354, 437, 52, 54);
+		lblNewLabel_1_1.setFont(new Font("µ¸¿ò", Font.PLAIN, 43));
+		lblNewLabel_1_1.setBounds(297, 373, 52, 54);
 		contentPane.add(lblNewLabel_1_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(84, 172, 255, 189);
+		scrollPane.setBounds(83, 134, 255, 189);
 		contentPane.add(scrollPane);
 		
 		JPanel panel = new JPanel();
@@ -116,17 +120,23 @@ public class menulist_pop extends JFrame {
 		JTextArea textmenuprice = new JTextArea();
 		panel.add(textmenuprice);
 		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.inactiveCaptionBorder);
+		panel_1.setBounds(83, 108, 255, 215);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
 		JLabel lblNewLabel_2 = new JLabel("\uC0C1\uD488\uBA85");
+		lblNewLabel_2.setBounds(0, 0, 73, 30);
+		panel_1.add(lblNewLabel_2);
 		lblNewLabel_2.setFont(new Font("±¼¸²", Font.PLAIN, 15));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(105, 146, 73, 30);
-		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("\uAC00\uACA9");
+		lblNewLabel_2_1.setBounds(116, 3, 66, 22);
+		panel_1.add(lblNewLabel_2_1);
 		lblNewLabel_2_1.setFont(new Font("±¼¸²", Font.PLAIN, 17));
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setBounds(237, 149, 66, 22);
-		contentPane.add(lblNewLabel_2_1);
 		textmenuprice.append(price);
 		
 			

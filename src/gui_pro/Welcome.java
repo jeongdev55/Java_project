@@ -13,6 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
+import java.awt.Color;
 
 public class Welcome extends JFrame {
 
@@ -39,29 +41,27 @@ public class Welcome extends JFrame {
 	 */
 	public Welcome() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(800,350, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setBackground(Color.WHITE);
+		btnNewButton.setIcon(new ImageIcon(Welcome.class.getResource("/images/LOGO_welcome.PNG")));
+		btnNewButton.setOpaque(false);
+		btnNewButton.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
 				dispose();
 				setVisible(false);
-			new LogIn().setVisible(true);
-				
-			
-				
-					
-			
-				
+			new Login().setVisible(true);	
 			}
 		});
-		btnNewButton.setBounds(0, 0, 434, 261);
+		btnNewButton.setBounds(12, 0, 434, 261);
 		contentPane.add(btnNewButton);
 	}
 }
