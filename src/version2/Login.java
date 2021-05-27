@@ -40,7 +40,6 @@ public class Login extends JFrame {
 			}
 		});
 	}
-	
 
 	/**
 	 * Create the frame.
@@ -64,8 +63,8 @@ public class Login extends JFrame {
 				String userName = textField.getText();
 				String  userPw = passwordField.getText();
 				
-				if(userName.equals("admin")&& userPw.equals("123456")) {
-					JOptionPane.showMessageDialog(null,"Weclome"+"\n"+"userName:  "+userName);
+				if(userName.equals("name")&& userPw.equals("123456")) {
+					JOptionPane.showMessageDialog(null,"Weclome"+"\n"+"user:  "+userName);
 					dispose();
 					setVisible(false);
 					new POS_Main_2(userName).setVisible(true);}
