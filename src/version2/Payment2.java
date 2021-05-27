@@ -8,6 +8,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javax.swing.JTextArea;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -17,6 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JSeparator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -35,11 +41,13 @@ public class Payment2 extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFinal;
-	//할인 항목 위해 에리어 전역 변수 선언 
+	//할인 항목 위해 에리어 전역 변수 선언 (5/26수정)
 	JTextArea textlist = new JTextArea();
-	int total;
-	int total2;
+	int total2, total3;
 	String totals;
+	String str;
+	String textEx;
+	int flag = 0;
 
 
 
@@ -68,7 +76,7 @@ public class Payment2 extends JFrame {
 	 */
 	//String str, int total
 	public Payment2(String str, int total) {
-		total2 = total;
+		total2 = total; //0526. 지워져있지 않은지 체크
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(500,250, 800, 600);   //위치 변경
 		contentPane = new JPanel();
@@ -94,21 +102,25 @@ public class Payment2 extends JFrame {
 			public void actionPerformed(ActionEvent e1) {
 				if (e1.getSource()==cmbox_payMethods) {
 					if(cmbox_payMethods.getSelectedItem().equals("카드")) {
-						total2=(int) (total2*0.95);   //5퍼 할인 적용
+						total2=(int) (total2*0.95);   //5퍼 할인 적용 + total2가 total로 되있는지 한번씩 체크
 						JOptionPane.showMessageDialog
 				         (null,(String)cmbox_payMethods.getSelectedItem()+"를 선택하셨습니다"+"\n 5% 할인 적용");
 			
 						textFinal.setText(total2+"");
 						textlist.append("카드    5%할인 적용\r\n");
+						total3 = total2;
+						textEx = textlist.getText();
 						if(cmbox_payMethods.getSelectedItem()!=null ) {
 							cmbox_payMethods.enable(false);}
 					}
 					if(cmbox_payMethods.getSelectedItem().equals("현금")){
-						total2=(int) (total2*0.9);   //10퍼 할인 적용
+						total2=(int) (total2*0.9);   //10퍼 할인 적용 + total2가 total로 되있는지 한번씩 체크
 					JOptionPane.showMessageDialog
 			         (null,(String)cmbox_payMethods.getSelectedItem()+"를 선택하셨습니다"+"\n 10% 할인 적용");
 					textFinal.setText(total2+"");
 					textlist.append("현금     10%할인 적용\r\n");
+					total3 = total2;
+					textEx = textlist.getText();
 					if(cmbox_payMethods.getSelectedItem()!=null ) {
 						cmbox_payMethods.enable(false);}
 					}
@@ -127,20 +139,39 @@ public class Payment2 extends JFrame {
 		cmbox_discount.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e2) {
 				if (e2.getSource()==cmbox_discount) {
+					if(cmbox_discount.getSelectedItem().equals("없음")) {
+						textFinal.setText(""+total3);
+						textlist.setText(textEx);
+						total2 = total3;
+						flag = 0;
+					}
 					if(cmbox_discount.getSelectedItem().equals("직원할인")) {
-						 total2=(int) (total2*0.9);  //직원할인 10퍼 적용
+						if(flag == 1) {
+							JOptionPane.showMessageDialog(null, "이미 선택한 항목입니다.");
+						}else {
+						 total2=(int) (total2*0.9);  //직원할인 10퍼 적용  + total2가 total로 되있는지 한번씩 체크
 					JOptionPane.showMessageDialog
 			         (null,(String)cmbox_discount.getSelectedItem()+"를 선택하셨습니다"+"\n 10% 추가 할인 적용");
 					textFinal.setText(""+total2); 
 					textlist.append("직원할인     10%할인 적용\r\n");
-					}
+					flag = 1;
+					}}
 					if (cmbox_discount.getSelectedItem().equals("취소")) {
 						JOptionPane.showMessageDialog
 				         (null,(String)cmbox_discount.getSelectedItem()+"하시겠습니까?");
 						String all;
+						
 						 all = String.valueOf(total);
 						textFinal.setText(all);
+						total2 = total;
+						flag = 0;
+						
 						cmbox_payMethods.enable(true);
+						
+						//텍스트 에리어 할인 사할 지워주는 작업
+						// 텍스트 없는 값으로 밀어주고, 기존str재배치 (5/26수정)
+						textlist.setText("");
+						textlist.append(str);
 						
 					}
 		
@@ -162,13 +193,23 @@ public class Payment2 extends JFrame {
 				int choose = JOptionPane.showConfirmDialog(null, "영수증을 출력하시겠습니까?", "영수증 확인", JOptionPane.YES_NO_OPTION);
 				if(choose == JOptionPane.YES_OPTION) {
 					try {
-						FileWriter filew = new FileWriter("C:/cash.txt");
-						textlist.append("\r\n총 결제금액 "+total+" 원");
-						filew.write(textlist.getText());
+						//0526. 영수증에 날짜 포함시키는 기능 추가
+						Calendar cal = Calendar.getInstance();
+						int year = cal.get(Calendar.YEAR); //해
+						int month = cal.get(Calendar.MONTH)+1; //달
+						int day = cal.get(Calendar.DAY_OF_MONTH); //일
+						int hour = cal.get(Calendar.HOUR_OF_DAY); //시간
+						int min = cal.get(Calendar.MINUTE); //분
+						int sec = cal.get(Calendar.SECOND); //초
+						String time = year + "년 " + month + "월 "+ day+"일 "+hour+"시"+min+"분"+sec+"초";
+						
+						FileWriter filew = new FileWriter("d:/cash.txt");
+						filew.write(str+"\r\n총 결제금액 "+total+" 원"+"\r\n"+time);
 						
 						filew.close();
 						dispose();
 						setVisible(false);
+						//0526. 결제 완료시 로그인 창으로 돌아가는 부분 삭제
 					} catch (IOException e1) {
 						e1.printStackTrace();
 						}
@@ -230,14 +271,18 @@ public class Payment2 extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
+		JLabel lblFl = new JLabel("메뉴          |   갯수   |                 가격");
+		lblFl.setBounds(6, 11, 328, 30);
+		lblFl.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		panel_1.add(lblFl);
+		
 		textlist = new JTextArea();
-		textlist.setBounds(6, 17, 328, 253);
+		textlist.setBounds(6, 40, 328, 230);
 		panel_1.add(textlist);
-	
 		textlist.append(str);
 		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(317, 17, 17, 253);
+		scrollBar.setBounds(317, 30, 17, 240);
 		panel_1.add(scrollBar);
 		
 		JLabel lbltotal = new JLabel("100000");
